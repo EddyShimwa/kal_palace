@@ -22,9 +22,9 @@ const Report: React.FC = () => {
   return (
 
   
-<div className='w-full'>
+<div className='w-full p-5'>
   <h1 className='py-5 font-bold'>Choose the date range to generate the report</h1>
-<div className="flex border border-[#159b4647] rounded-lg items-center font-bold justify-between p-2">
+<div className="block  md:flex border border-[#159b4647] rounded-lg items-center font-bold justify-between p-5 md:p-2">
       <div className='md:flex  p-2 items-center'>
         <label htmlFor="fromDate" className='mr-2'>From: </label>
         <DatePicker
@@ -38,7 +38,7 @@ const Report: React.FC = () => {
           className='p-2 border border-[#159b4647] rounded-lg dark:bg-black'
         />
       </div>
-      <div className='md:flex items-center font-bold'>
+      <div className='md:flex items-center font-bold p-2'>
         <label htmlFor="toDate" className='mr-2'>To: </label>
         <DatePicker
           selected={toDate}
