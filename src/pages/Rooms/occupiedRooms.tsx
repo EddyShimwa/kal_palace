@@ -34,7 +34,7 @@ const OccupiedRooms: React.FC = () => {
             </div>
             <div className="flex items-center justify-between mt-5 font-bold">
               <span className="text-[#2b78ff]">{room.price} Rwf</span>
-              <button className={`rounded-md text-white py-1 px-5 ${room.isOccupied ? 'text-[#ef4444a6]' : 'text-green-600'}`}>
+              <button className={`rounded-md py-1 px-5 ${room.isOccupied ? 'text-[#ef4444a6]' : 'text-green-600'}`}>
                 {room.isOccupied ? 'Occupied' : 'Free'}
               </button>
             </div>

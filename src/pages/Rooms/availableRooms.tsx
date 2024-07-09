@@ -25,7 +25,7 @@ const FreeRooms: React.FC = () => {
         <p className="flex mr-6 ">{getCurrentDate()}</p>
       </div>
       <div className="block md:grid grid-cols-3 gap-2">
-        {loading &&  <FullScreenLoader />}
+        {loading && <FullScreenLoader />}
         {error && <p className="text-red-500 text-sm">{error}</p>}
         {!loading && !error && rooms.filter((room) => room.isOccupied === false).map((room: Room) => (
           <div key={room._id} className={`border rounded-lg p-4 md:p-4 m-5 bg-[#e2e8f0] dark:bg-[#141a21f7] hover:bg-white ${room.isOccupied ? 'border-[#ef444461]' : 'border-[#159b4647]'}`}>
@@ -34,7 +34,7 @@ const FreeRooms: React.FC = () => {
             </div>
             <div className="flex items-center justify-between mt-5 font-bold">
               <span className="text-[#2b78ff]">{room.price} Rwf</span>
-              <button className={`rounded-md text-white py-1 px-5 ${room.isOccupied ? 'text-[#ef4444a6]' : 'text-green-600'}`}>
+              <button className={`rounded-md py-1 px-5 ${room.isOccupied ? 'text-[#ef4444a6]' : 'text-green-600'}`}>
                 {room.isOccupied ? 'Occupied' : 'Free'}
               </button>
             </div>
