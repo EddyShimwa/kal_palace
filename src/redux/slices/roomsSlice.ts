@@ -7,6 +7,9 @@ interface Room {
   isOccupied: boolean;
   price: number;
   __v: number;
+  occupantName: string | null;
+  checkInDate: string;
+  checkOutDate: string;
 }
 
 interface RoomsState {
@@ -23,6 +26,25 @@ const initialState: RoomsState = {
 
 const apiUrl = 'https://lodge-backend.onrender.com/api/rooms';
 
+export const fetchOccupiedRooms = createAsyncThunk<Room[], { startDate: string, endDate: string }>(
+  'rooms/fetchOccupiedRooms',
+  async ({ startDate, endDate }) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+
+    const response = await axios.get(`${apiUrl}/occupied`, {
+      params: { startDate, endDate },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data.details;
+  }
+);
+
 export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () => {
   const token = localStorage.getItem('token');
   if (!token) {
@@ -37,6 +59,7 @@ export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () 
 
   return response.data;
 });
+
 
 export const updateRoomStatus = createAsyncThunk<Room, number>(
   'rooms/updateRoomStatus',
@@ -73,6 +96,19 @@ const roomsSlice = createSlice({
       console.log(action.error);
       state.loading = false;
       state.error = action.error.message || 'Failed to fetch rooms';
+    });
+    builder.addCase(fetchOccupiedRooms.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(fetchOccupiedRooms.fulfilled, (state, action: PayloadAction<Room[]>) => {
+      state.rooms = action.payload;
+      state.loading = false;
+    });
+    builder.addCase(fetchOccupiedRooms.rejected, (state, action) => {
+      console.log(action.error);
+      state.loading = false;
+      state.error = action.error.message || 'Failed to fetch occupied rooms';
     });
     builder.addCase(updateRoomStatus.fulfilled, (state, action: PayloadAction<Room>) => {
       const updatedRoom = action.payload;
