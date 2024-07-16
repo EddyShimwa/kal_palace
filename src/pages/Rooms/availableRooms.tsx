@@ -26,6 +26,7 @@ const FreeRooms: React.FC = () => {
       </div>
       <div className="block md:grid grid-cols-3 gap-2">
         {loading && <FullScreenLoader />}
+        {rooms.length === 0 && !loading && <p className="text-center text-lg font-bold mt-5">All Rooms Are Occupied!</p>}
         {error && <p className="text-red-500 text-sm">{error}</p>}
         {!loading && !error && rooms.filter((room) => room.isOccupied === false).map((room: Room) => (
           <div key={room._id} className={`border rounded-lg p-4 md:p-4 m-5 bg-[#e2e8f0] dark:bg-[#141a21f7] hover:bg-white ${room.isOccupied ? 'border-[#ef444461]' : 'border-[#159b4647]'}`}>

@@ -14,7 +14,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const location = useLocation();
   const { pathname } = location;
   const dispatch = useDispatch<AppDispatch>();
-  const { rooms } = useSelector((state: RootState) => state.rooms);
+  const rooms = useSelector((state: RootState) => state.rooms.rooms);
   const { user } = useSelector((state: RootState) => state.signIn);
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
@@ -51,6 +51,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
+
+  useEffect(() => {
+    console.log("Rooms state updated:", rooms);
+
+  }, [rooms])
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());

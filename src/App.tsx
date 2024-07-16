@@ -22,7 +22,7 @@ import { RootState } from './redux/store';
 
 
 const PrivateRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
-  const { token } = useSelector((state: RootState) => state.signIn);
+  const token = useSelector((state: RootState) => state.signIn.token);
 
   if (!token) {
     return <Navigate to="/auth/signin" />;
@@ -63,7 +63,7 @@ function App() {
           path="/auth/signin"
           element={
             <>
-              <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Signin " />
               <SignIn />
             </>
           }
@@ -88,7 +88,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Receptionist Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Receptionist Dashboard " />
                     {/* Your Receptionist Dashboard Component */}
                   </>
                 </PrivateRoute>
@@ -99,7 +99,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Calendar " />
                     <Calendar />
                   </>
                 </PrivateRoute>
@@ -110,7 +110,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Form Layout " />
                     <FormLayout />
                   </>
                 </PrivateRoute>
@@ -132,7 +132,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Settings " />
                     <Settings />
                   </>
                 </PrivateRoute>
@@ -143,7 +143,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Basic Chart " />
                     <Chart />
                   </>
                 </PrivateRoute>
@@ -154,7 +154,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Alerts " />
                     <Alerts />
                   </>
                 </PrivateRoute>
@@ -165,7 +165,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Buttons " />
                     <Buttons />
                   </>
                 </PrivateRoute>

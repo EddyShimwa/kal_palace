@@ -29,21 +29,28 @@ const apiUrl = 'https://lodge-backend.onrender.com/api/rooms';
 export const fetchOccupiedRooms = createAsyncThunk<Room[], { startDate: string, endDate: string }>(
   'rooms/fetchOccupiedRooms',
   async ({ startDate, endDate }) => {
+    console.log(`Fetching occupied rooms between ${startDate} and ${endDate}`);
     const token = localStorage.getItem('token');
     if (!token) {
       throw new Error('No authentication token found');
     }
 
-    const response = await axios.get(`${apiUrl}/occupied`, {
-      params: { startDate, endDate },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return response.data.details;
-  }
+    try {
+      const response = await axios.get(`${apiUrl}/occupied`, {
+        params: { startDate, endDate },
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('Response:', response.data);
+      return response.data.details;
+    } catch (error) {
+      console.error('Error fetching occupied rooms:', error);
+      throw error;
+    }
+  } 
 );
+
 
 export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () => {
   const token = localStorage.getItem('token');
@@ -59,7 +66,6 @@ export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () 
 
   return response.data;
 });
-
 
 export const updateRoomStatus = createAsyncThunk<Room, number>(
   'rooms/updateRoomStatus',
@@ -106,7 +112,7 @@ const roomsSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(fetchOccupiedRooms.rejected, (state, action) => {
-      console.log(action.error);
+      console.log('Error fetching occupied rooms:', action.error);
       state.loading = false;
       state.error = action.error.message || 'Failed to fetch occupied rooms';
     });
