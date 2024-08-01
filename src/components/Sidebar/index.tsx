@@ -76,7 +76,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
         <NavLink to="/">
           <span>
-            <h1 className="text-2xl text-white font-bold"> Kal Palace</h1>
+            <h1 className="text-2xl text-white font-bold">DELLA-VITE</h1>
           </span>
         </NavLink>
 

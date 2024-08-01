@@ -54,7 +54,7 @@ function App() {
           index
           element={
             <>
-              <PageTitle title="Kal Palace" />
+              <PageTitle title="DELLA-VITE" />
               <SplashPage />
             </>
           }
@@ -121,7 +121,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Report | Kal Palace" />
+                    <PageTitle title="Report | DELLA-VITE" />
                     <Report />
                   </>
                 </PrivateRoute>
@@ -175,7 +175,7 @@ function App() {
               path="/auth/signup"
               element={
                 <>
-                  <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                  <PageTitle title="Signup" />
                   <SignUp />
                 </>
               }
@@ -185,7 +185,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Rooms | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Rooms" />
                     <AllRooms />
                   </>
                 </PrivateRoute>
@@ -196,7 +196,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Free Rooms | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Free Rooms" />
                     <FreeRooms />
                   </>
                 </PrivateRoute>
@@ -207,7 +207,7 @@ function App() {
               element={
                 <PrivateRoute>
                   <>
-                    <PageTitle title="Occupied Rooms | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                    <PageTitle title="Occupied Rooms" />
                     <OccupiedRooms />
                   </>
                 </PrivateRoute>
@@ -221,4 +221,3 @@ function App() {
 }
 
 export default App;
-``
