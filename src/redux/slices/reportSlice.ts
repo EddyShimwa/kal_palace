@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// Define the payload type for the fulfilled action
 interface FetchOccupancyPayload {
   totalRevenue: number;
   count: number;
@@ -14,7 +13,6 @@ interface FetchOccupancyPayload {
   }>;
 }
 
-// Define the state shape
 interface OccupancyState {
   totalRevenue: number;
   count: number;
@@ -30,7 +28,6 @@ interface OccupancyState {
   error?: string;
 }
 
-// Initial state
 const initialState: OccupancyState = {
   totalRevenue: 0,
   count: 0,
@@ -39,7 +36,6 @@ const initialState: OccupancyState = {
   error: '',
 };
 
-// Async thunk action
 export const fetchOccupancy = createAsyncThunk(
   'occupancy/fetchOccupancy',
   async (params: { startDate: string; endDate: string }) => {
@@ -59,14 +55,13 @@ export const fetchOccupancy = createAsyncThunk(
     if (!response.ok) {
       throw new Error('Failed to fetch occupancy data');
     }
-    return await response.json(); // Return the whole response object
+    return await response.json(); 
   }
 );
 
-// Slice
 export const occupancySlice = createSlice({
   name: 'occupancy',
-  initialState, // Corrected here
+  initialState, 
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -85,9 +80,7 @@ export const occupancySlice = createSlice({
       });
   },
 });
-
-// Export actions and reducer
+``
 export const { actions: occupancyActions, reducer: occupancyReducer } = occupancySlice;
 
-// Export the reducer as default
 export default occupancyReducer;

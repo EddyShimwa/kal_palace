@@ -34,7 +34,6 @@ export const fetchOccupiedRooms = createAsyncThunk<Room[], { startDate: string, 
     if (!token) {
       throw new Error('No authentication token found');
     }
-
     try {
       const response = await axios.get(`${apiUrl}/occupied`, {
         params: { startDate, endDate },
@@ -54,6 +53,7 @@ export const fetchOccupiedRooms = createAsyncThunk<Room[], { startDate: string, 
 
 export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () => {
   const token = localStorage.getItem('token');
+  
   if (!token) {
     throw new Error('No authentication token found');
   }
