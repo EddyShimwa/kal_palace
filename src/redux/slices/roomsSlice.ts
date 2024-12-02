@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { AxiosHeaders } from 'axios';
 
 interface Room {
   _id: string;
@@ -50,7 +50,6 @@ export const fetchOccupiedRooms = createAsyncThunk<Room[], { startDate: string, 
   } 
 );
 
-
 export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () => {
   const token = localStorage.getItem('token');
   
@@ -67,6 +66,7 @@ export const fetchRooms = createAsyncThunk<Room[]>('rooms/fetchRooms', async () 
   return response.data;
 });
 
+
 export const updateRoomStatus = createAsyncThunk<Room, number>(
   'rooms/updateRoomStatus',
   async (roomNumber) => {
@@ -74,7 +74,6 @@ export const updateRoomStatus = createAsyncThunk<Room, number>(
     if (!token) {
       throw new Error('No authentication token found');
     }
-
     const response = await axios.put(`${apiUrl}/${roomNumber}/status`, {}, {
       headers: {
         Authorization: `Bearer ${token}`,
